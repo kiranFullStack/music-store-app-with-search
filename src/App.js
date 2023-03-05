@@ -11,6 +11,7 @@ function App() {
   // ! getting lat long data to add complexity ❌❌❌❌
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
+  const [userDevice, setuserDevice] = useState(null)
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -26,12 +27,22 @@ function App() {
     } else {
       console.error('Geolocation is not supported by this browser.')
     }
+
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      // The device is a phone
+      setuserDevice('mobile')
+    } else {
+      // The device is a laptop or a desktop computer
+      setuserDevice('laptop')
+    }
   }, [])
   // ! getting lat long data ❌❌❌❌
 
   useEffect(() => {
     // Filter products based on search term
-    const filteredProducts = productData.filter((product) => product.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredProducts = productData.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
     setProducts(filteredProducts)
   }, [searchTerm])
 
@@ -71,7 +82,25 @@ function App() {
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <h3>${product.price}</h3>
-            <button onClick={() => window.open(`https://web.whatsapp.com/send?phone=918722978015&text=Please send ${product.name}, my location is https://www.google.com/maps?q=${latitude},${longitude}&app_absent=0`)}>Buy on Whatsapp</button>
+            {userDevice === 'mobile' ? (
+              <button
+                onClick={() =>
+                  window.open(
+                    `https://wa.me/send?phone=918722978015&text=Please send ${product.name}, my location is https://www.google.com/maps?q=${latitude},${longitude}&app_absent=0`
+                  )
+                }>
+                Buy on Whatsapp
+              </button>
+            ) : (
+              <button
+                onClick={() =>
+                  window.open(
+                    `https://web.whatsapp.com/send?phone=918722978015&text=Please send ${product.name}, my location is https://www.google.com/maps?q=${latitude},${longitude}&app_absent=0`
+                  )
+                }>
+                Buy on Whatsapp
+              </button>
+            )}
           </div>
         ))}
       </div>
