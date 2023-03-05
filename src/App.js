@@ -9,8 +9,6 @@ function App() {
   useEffect(() => {
     // Filter products based on search term
     const filteredProducts = productData.filter((product) => product.name.toLowerCase().includes(searchTerm.toLowerCase()))
-
-    // Update products state with filtered products
     setProducts(filteredProducts)
   }, [searchTerm])
 
@@ -45,7 +43,7 @@ function App() {
         ))}
       </div>
       <div className='footer'>
-        <p>&copy; 2023 Music Store</p>
+        <p>&copy; 2023 Kiran</p>
       </div>
     </div>
   )
