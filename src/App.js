@@ -6,6 +6,25 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('')
   const [products, setProducts] = useState(productData)
 
+  const [latitude, setLatitude] = useState(null)
+  const [longitude, setLongitude] = useState(null)
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLatitude(position.coords.latitude)
+          setLongitude(position.coords.longitude)
+        },
+        (error) => {
+          console.error(error)
+        }
+      )
+    } else {
+      console.error('Geolocation is not supported by this browser.')
+    }
+  }, [])
+
   useEffect(() => {
     // Filter products based on search term
     const filteredProducts = productData.filter((product) => product.name.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -38,7 +57,7 @@ function App() {
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <h3>${product.price}</h3>
-            <button onClick={() => window.open(`https://web.whatsapp.com/send?phone=8722978015&text=Please send ${product.name}&app_absent=0`)}>Buy on Whatsapp</button>
+            <button onClick={() => window.open(`https://web.whatsapp.com/send?phone=8722978015&text=Please send ${product.name}, my location is https://www.google.com/maps?q=${latitude},${longitude}&app_absent=0`)}>Buy on Whatsapp</button>
           </div>
         ))}
       </div>
