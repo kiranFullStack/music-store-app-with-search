@@ -19,7 +19,7 @@ function App() {
   return (
     <div className='App'>
       <div className='header'>
-        <h1>Music Store</h1>
+        <h1>Kiran's Music Store</h1>
         <input
           type='text'
           placeholder='Search products'
