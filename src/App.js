@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
+import Header from './components/Header'
+import Products from './components/Products'
 import productData from './products.json'
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('')
   const [products, setProducts] = useState(productData)
 
+  // ! getting lat long data to add complexity ❌❌❌❌
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
 
@@ -24,6 +27,7 @@ function App() {
       console.error('Geolocation is not supported by this browser.')
     }
   }, [])
+  // ! getting lat long data ❌❌❌❌
 
   useEffect(() => {
     // Filter products based on search term
@@ -37,6 +41,16 @@ function App() {
 
   return (
     <div className='App'>
+      {/* // TODO: Remove display:none to see the component */}
+
+      <div style={{ display: 'none' }}>
+        <Header handleSearch={handleSearch} />
+        <Products
+          products={products}
+          latitude={latitude}
+          longitude={longitude}
+        />
+      </div>
       <div className='header'>
         <h1>Kiran's Music Store</h1>
         <input
@@ -57,7 +71,7 @@ function App() {
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <h3>${product.price}</h3>
-            <button onClick={() => window.open(`https://web.whatsapp.com/send?phone=8722978015&text=Please send ${product.name}, my location is https://www.google.com/maps?q=${latitude},${longitude}&app_absent=0`)}>Buy on Whatsapp</button>
+            <button onClick={() => window.open(`https://web.whatsapp.com/send?phone=918722978015&text=Please send ${product.name}, my location is https://www.google.com/maps?q=${latitude},${longitude}&app_absent=0`)}>Buy on Whatsapp</button>
           </div>
         ))}
       </div>
