@@ -42,7 +42,7 @@ function App() {
           </div>
         ))}
       </div>
-      <div className='footer'>
+      <div>
         <p>&copy; 2023 Kiran</p>
         <a
           href='https://github.com/kiranFullStack/music-store-app-with-search'
