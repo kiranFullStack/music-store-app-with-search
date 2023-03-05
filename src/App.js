@@ -86,7 +86,7 @@ function App() {
               <button
                 onClick={() =>
                   window.open(
-                    `https://wa.me/send?phone=918722978015&text=Please send ${product.name}, my location is https://www.google.com/maps?q=${latitude},${longitude}&app_absent=0`
+                    `https://api.whatsapp.com/send?phone=918722978015&text=Please send ${product.name}, my location is https://www.google.com/maps?q=${latitude},${longitude}&app_absent=0`
                   )
                 }>
                 Buy on Whatsapp
