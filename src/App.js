@@ -40,7 +40,7 @@ function App() {
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <h3>${product.price}</h3>
-            <button onClick={() => alert(product.name)}>Add to cart</button>
+            <button onClick={() => alert(`${product.name} added to Cart`)}>Add to cart</button>
           </div>
         ))}
       </div>
