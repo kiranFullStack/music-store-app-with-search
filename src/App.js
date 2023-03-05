@@ -38,12 +38,21 @@ function App() {
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <h3>${product.price}</h3>
-            <button onClick={() => alert(`${product.name} added to Cart`)}>Add to cart</button>
+            <button onClick={() => window.open(`https://web.whatsapp.com/send?phone=8722978015&text=Please send ${product.name}&app_absent=0`)}>Buy on Whatsapp</button>
           </div>
         ))}
       </div>
       <div className='footer'>
         <p>&copy; 2023 Kiran</p>
+        <a
+          href='https://github.com/kiranFullStack/music-store-app-with-search'
+          target='_blank'
+          rel='noreferrer'>
+          ⭐️⭐️⭐️CODE👨🏽‍💻⭐️⭐️⭐️
+        </a>
+        <br />
+        <br />
+        <br />
       </div>
     </div>
   )
